@@ -2,4 +2,4 @@
 
 Support:
 * Remove youtube advertisement 
-* Skip youtube advertisement as sun as possible
+* Skip youtube advertisement as soon as possible

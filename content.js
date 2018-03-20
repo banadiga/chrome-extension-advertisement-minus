@@ -1,17 +1,19 @@
-(function () {
-    var configuration = {
-        youtubeCompanionTopId: "masthead-ad",
-        youtubeCompanionId: "google_companion_ad_div",
-        youtubeVideoAdsClass: "video-ads",
-        youtubeVideoAdsUiClass: "videoAdUiSkipButton",
-        youtubeVideoAdsCloseClass: "close-button",
-
-        interval: 2000
-    };
+(function (configuration) {
 
     var clickOnButtonClose = function (button) {
         console.info("`" + configuration.youtubeVideoAdsClass + "` closed.");
         button.click();
+    };
+
+    var removeAdsById = function (adsId) {
+        removeAds(document.getElementById(adsId));
+    };
+
+    var removeAdsByClassName = function (adsClassName) {
+        var elementsByClassName = document.getElementsByClassName(adsClassName);
+        Array.prototype.forEach.call(
+            elementsByClassName,
+            removeAds);
     };
 
     var removeAds = function (ads) {
@@ -40,14 +42,14 @@
     };
 
     var closeTopGoogleCompanion = function () {
-        removeAds(document.getElementById(configuration.youtubeCompanionTopId));
+        removeAdsById(configuration.youtubeCompanionTopId);
     };
 
     var closeGoogleCompanion = function () {
-        removeAds(document.getElementById(configuration.youtubeCompanionId));
+        removeAdsById(configuration.youtubeCompanionId);
     };
 
-    var closeAdvertisement = function () {
+    var closeYoutubeAdvertisement = function () {
         closeYoutubeVideoAds();
         closeYoutubeVideoAdsUi();
 
@@ -55,9 +57,20 @@
         closeGoogleCompanion();
     };
 
+    var closeAdvertisement = function () {
+        Array.prototype.forEach.call(
+            configuration.advertisementIds,
+            removeAdsById);
+
+        Array.prototype.forEach.call(
+            configuration.advertisementClassNames,
+            removeAdsByClassName);
+    };
+
     return {
         setup: function () {
+            setInterval(closeYoutubeAdvertisement, configuration.interval);
             setInterval(closeAdvertisement, configuration.interval);
         }
     }
-})().setup();
+})(configuration).setup();

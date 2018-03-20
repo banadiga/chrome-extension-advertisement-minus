@@ -9,6 +9,7 @@
   "content_scripts": [
     {
       "js": [
+        "config.js",
         "content.js"
       ],
       "matches": [
