@@ -1,14 +1,12 @@
 var configuration = (function () {
     return {
-        youtubeCompanionTopId: "masthead-ad",
-        youtubeCompanionId: "google_companion_ad_div",
         youtubeVideoAdsClass: "video-ads",
-        youtubeVideoAdsUiClass: "videoAdUiSkipButton",
         youtubeVideoAdsCloseClass: "close-button",
 
         advertisementIds: [
-            "announcement-banner",
+            "masthead-ad",
             "google_companion_ad_div",
+            "announcement-banner",
             "aswift_0_expand",
             "aswift_1_expand",
             "aswift_2_expand",
@@ -19,7 +17,9 @@ var configuration = (function () {
 
         advertisementClassNames: [
             "adsbygoogle",
-            "disable-ads-banner"
+            "disable-ads-banner",
+            "video-ads",
+            "video-annotations"
         ],
 
         interval: 2000,

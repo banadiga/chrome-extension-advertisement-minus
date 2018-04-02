@@ -1,7 +1,7 @@
 (function (configuration) {
 
     var clickOnButtonClose = function (button) {
-        console.info("`" + configuration.youtubeVideoAdsClass + "` closed.");
+        console.info("Click on `" + button.id + "` closed.");
         button.click();
     };
 
@@ -18,8 +18,8 @@
 
     var removeAds = function (ads) {
         if (ads !== null) {
-            ads.innerHTML = "";
-            console.info("`" + configuration.youtubeCompanionId + "` closed.");
+            ads.parentElement.removeChild(ads);
+            console.info("Remove `[" + ads.id + "/" + ads.className + "]` ads.");
         }
     };
 
@@ -29,32 +29,10 @@
             clickOnButtonClose);
     };
 
-    var closeYoutubeVideoAdsUi = function () {
-        Array.prototype.forEach.call(
-            document.getElementsByClassName(configuration.youtubeVideoAdsUiClass),
-            clickOnButtonClose);
-    };
-
-    var closeYoutubeVideoAds = function () {
+    var closeYoutubeAdvertisement = function () {
         Array.prototype.forEach.call(
             document.getElementsByClassName(configuration.youtubeVideoAdsClass),
             handleYoutubeVideoAds);
-    };
-
-    var closeTopGoogleCompanion = function () {
-        removeAdsById(configuration.youtubeCompanionTopId);
-    };
-
-    var closeGoogleCompanion = function () {
-        removeAdsById(configuration.youtubeCompanionId);
-    };
-
-    var closeYoutubeAdvertisement = function () {
-        closeYoutubeVideoAds();
-        closeYoutubeVideoAdsUi();
-
-        closeTopGoogleCompanion();
-        closeGoogleCompanion();
     };
 
     var closeAdvertisement = function () {
